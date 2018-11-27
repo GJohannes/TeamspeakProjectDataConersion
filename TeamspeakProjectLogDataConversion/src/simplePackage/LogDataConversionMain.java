@@ -17,7 +17,22 @@ import javafx.print.JobSettings;
 public class LogDataConversionMain {
 
 	public static void main(String[] args) throws IOException {
-		File allFilesInOneFolder = new File("C:\\Users\\Johannes\\Desktop\\TeamspeakProject\\BA\\log");
+		if(args.length != 1) {
+			System.out.println("Please only enter a single argument which is the path to the folder that should be changed");
+			return;
+		}
+		
+		File allFilesInOneFolder = new File(args[0]);
+		
+		if(!allFilesInOneFolder.exists()) {
+			System.out.println("Could not execute. First argument has to be the path to the folder");
+			return;
+		} else if(allFilesInOneFolder.isFile()) {
+			System.out.println("Could not execute. irst argument has to be the path to the folder with files and NOT A FILE");
+			return;
+		}
+		
+		
 		for (int i = 0; i < allFilesInOneFolder.list().length; i++) {
 			File singleFile = new File(allFilesInOneFolder.getPath() + "/" + allFilesInOneFolder.list()[i]);
 			Path path = Paths.get(singleFile.getAbsolutePath());
@@ -28,7 +43,7 @@ public class LogDataConversionMain {
 					try {
 						JSONParser parser = new JSONParser();
 						parser.parse(allJSONSofOneFile.get(j));
-						System.out.println("file: " + allFilesInOneFolder.list()[i] + " -- line: " + j + "is already a valid json file - Line was not changed");
+						System.out.println("file: " + allFilesInOneFolder.list()[i] + " -- line: " + j + " is already a valid json file - Line was not changed");
 						continue;
 					} catch (Exception e) {
 
