@@ -21,9 +21,9 @@ public class LogDataConversionMain {
 	private static JSONParser parser = new JSONParser();
 
 	public static void main(String[] args) throws IOException {
-		String[] debugArray = new String[1];
-		debugArray[0] = "C:\\GitRepository\\CurrentTeamspeak3Project\\log";
-		args = debugArray;
+//		String[] debugArray = new String[1];
+//		debugArray[0] = "C:\\GitRepository\\CurrentTeamspeak3Project\\log";
+//		args = debugArray;
 
 		if (args.length != 1) {
 			System.out.println("Please only enter a single argument which is the path to the folder that should be changed");
