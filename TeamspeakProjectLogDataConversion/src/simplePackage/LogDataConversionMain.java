@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,10 +22,12 @@ public class LogDataConversionMain {
 	private static JSONParser parser = new JSONParser();
 
 	public static void main(String[] args) throws IOException {
-//		String[] debugArray = new String[1];
-//		debugArray[0] = "C:\\GitRepository\\CurrentTeamspeak3Project\\log";
-//		args = debugArray;
+		String[] debugArray = new String[1];
+		debugArray[0] = "C:\\Users\\Johannes\\Downloads\\log";
+		args = debugArray;
 
+		
+		
 		if (args.length != 1) {
 			System.out.println("Please only enter a single argument which is the path to the folder that should be changed");
 			return;
@@ -43,8 +46,8 @@ public class LogDataConversionMain {
 		for (int i = 0; i < allFilesInOneFolder.list().length; i++) {
 			File singleFile = new File(allFilesInOneFolder.getPath() + "/" + allFilesInOneFolder.list()[i]);
 			Path path = Paths.get(singleFile.getAbsolutePath());
-			ArrayList<String> allJSONSofOneFile = (ArrayList<String>) Files.readAllLines(path);
-
+			List<String> allJSONSofOneFile = Files.readAllLines(path, StandardCharsets.ISO_8859_1);
+			
 			try {
 				for (int j = 0; j < allJSONSofOneFile.size(); j++) {
 
